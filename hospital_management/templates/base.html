@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Hospital Management{% endblock %}</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+            <h1 class="text-xl font-bold text-blue-600">Hospital Management</h1>
+            <nav class="space-x-4">
+                <a href="{% url 'register' %}" class="text-gray-700 hover:text-blue-600 font-medium">Register</a>
+                <a href="{% url 'login' %}" class="text-gray-700 hover:text-blue-600 font-medium">Login</a>
+                <a href="{% url 'logout' %}" class="text-gray-700 hover:text-blue-600 font-medium">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow-inner mt-6">
+        <div class="max-w-7xl mx-auto px-4 py-4 text-center text-gray-500 text-sm">
+            &copy; {{ now|date:"Y" }} Hospital Management System. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
