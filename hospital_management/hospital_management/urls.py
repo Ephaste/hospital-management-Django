@@ -1,8 +1,10 @@
-from django.contrib import admin
 from django.urls import path, include
+from django.contrib import admin
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('accounts.urls')),        # This includes register/login/logout
-    # path('dashboard/', include('dashboard.urls')),  # Optional: your dashboard app URLs
+    path('', RedirectView.as_view(pattern_name='login', permanent=False)),
+    path('', include('accounts.urls')),
+    path('dashboard/', include('dashboard.urls')),
 ]
