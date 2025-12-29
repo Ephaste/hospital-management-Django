@@ -43,7 +43,7 @@ def custom_login(request):
                 "Welcome to Hospital Management System"
             )
             print(" Login successful. Redirecting to dashboard...")
-            return redirect('home')
+            return redirect('dashboard:home')
 
         else:
             # ✅ DO NOT hardcode message — show real form error
