@@ -1,0 +1,19 @@
+{% extends 'dashboard/dashboard_home.html' %}
+{% block dashbody %}
+
+<div class="bg-white rounded-xl shadow p-6 max-w-lg mx-auto">
+    <h2 class="text-lg font-bold text-gray-800 mb-4">
+        {% if form.instance.pk %}Edit Patient{% else %}Add New Patient{% endif %}
+    </h2>
+
+    <form method="POST" class="space-y-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            {% if form.instance.pk %}Update{% else %}Save{% endif %}
+        </button>
+        <a href="{% url 'patients:list' %}" class="ml-2 text-gray-600 hover:underline">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}

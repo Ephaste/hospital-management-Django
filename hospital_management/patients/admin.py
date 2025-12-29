@@ -3,4 +3,6 @@ from .models import Patient
 
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'phone', 'email']
+    list_display = ('first_name', 'last_name', 'gender', 'status', 'phone')
+    search_fields = ('first_name', 'last_name', 'phone')
+    list_filter = ('gender', 'status')

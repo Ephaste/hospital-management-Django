@@ -1,0 +1,42 @@
+{% extends 'dashboard/dashboard_home.html' %}
+{% block dashbody %}
+
+<div class="bg-white rounded-xl shadow p-6">
+    <h2 class="text-lg font-bold text-gray-800 mb-4">Patients</h2>
+
+    <a href="{% url 'patients:create' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mb-4 inline-block">Add New Patient</a>
+
+    <table class="w-full text-sm border-collapse border border-gray-200">
+        <thead>
+            <tr class="bg-gray-100 border-b">
+                <th class="px-4 py-2 border">Name</th>
+                <th class="px-4 py-2 border">Gender</th>
+                <th class="px-4 py-2 border">DOB</th>
+                <th class="px-4 py-2 border">Phone</th>
+                <th class="px-4 py-2 border">Status</th>
+                <th class="px-4 py-2 border">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+            <tr class="border-b">
+                <td class="px-4 py-2 border">{{ patient.first_name }} {{ patient.last_name }}</td>
+                <td class="px-4 py-2 border">{{ patient.gender|capfirst }}</td>
+                <td class="px-4 py-2 border">{{ patient.date_of_birth }}</td>
+                <td class="px-4 py-2 border">{{ patient.phone }}</td>
+                <td class="px-4 py-2 border">{{ patient.status|capfirst }}</td>
+                <td class="px-4 py-2 border">
+                    <a href="{% url 'patients:edit' patient.id %}" class="text-blue-600 hover:underline">Edit</a> |
+                    <a href="{% url 'patients:delete' patient.id %}" class="text-red-600 hover:underline">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="px-4 py-2 text-center text-gray-500">No patients found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

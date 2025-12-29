@@ -1,0 +1,15 @@
+{% extends 'dashboard/dashboard_home.html' %}
+{% block dashbody %}
+
+<div class="bg-white rounded-xl shadow p-6 max-w-md mx-auto text-center">
+    <h2 class="text-lg font-bold text-gray-800 mb-4">Delete Patient</h2>
+    <p class="mb-4">Are you sure you want to delete <strong>{{ patient.first_name }} {{ patient.last_name }}</strong>?</p>
+
+    <form method="POST" class="space-x-2">
+        {% csrf_token %}
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Delete</button>
+        <a href="{% url 'patients:list' %}" class="text-gray-600 hover:underline">Cancel</a>
+    </form>
+</div>
+
+{% endblock %}
